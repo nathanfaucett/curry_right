@@ -14,7 +14,7 @@ function baseCurryRight(fn, args) {
 
 module.exports = function curryRight(fn) {
     if (!isFunction(fn)) {
-        throw new TypeError("curry(fn, ...args) fn must be a function");
+        throw new TypeError("curryRight(fn, ...args) fn must be a function");
     }
     return baseCurryRight(fn, arguments.length > 1 ? fastSlice(arguments, 1) : null);
 };
