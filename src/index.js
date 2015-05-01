@@ -3,6 +3,16 @@ var isFunction = require("is_function"),
     createFunctionWrapper = require("create_function_wrapper");
 
 
+module.exports = curryRight;
+
+
+function curryRight(fn) {
+    if (!isFunction(fn)) {
+        throw new TypeError("curryRight(fn, ...args) fn must be a function");
+    }
+    return baseCurryRight(fn, arguments.length > 1 ? fastSlice(arguments, 1) : null);
+}
+
 function baseCurryRight(fn, args) {
     var bound = createFunctionWrapper(fn),
         wrapper = bound.__wrapper__;
@@ -11,10 +21,3 @@ function baseCurryRight(fn, args) {
 
     return bound;
 }
-
-module.exports = function curryRight(fn) {
-    if (!isFunction(fn)) {
-        throw new TypeError("curryRight(fn, ...args) fn must be a function");
-    }
-    return baseCurryRight(fn, arguments.length > 1 ? fastSlice(arguments, 1) : null);
-};
