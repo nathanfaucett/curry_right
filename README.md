@@ -1,4 +1,4 @@
 curryRight
 =======
 
-curryRight for the browser and node.js
+curry right for the browser and node.js
